@@ -369,11 +369,25 @@ export const BrotherRoom = ({ onBack }: { onBack: () => void }) => {
                     <button className="p-2 text-zinc-400"><MoreHorizontal size={20} /></button>
                   </div>
 
-                  {/* Album Art */}
+                  {/* Album Art / Video Player */}
                   <div className="flex-1 flex items-center justify-center p-8">
                     <div className={`w-full aspect-square bg-zinc-800 rounded-3xl shadow-2xl overflow-hidden relative ${isPlaying ? 'scale-100' : 'scale-95'} transition-transform duration-500`}>
-                      <img src="https://i.postimg.cc/nLpsbvT5/1.webp" alt="Album Art" className="w-full h-full object-cover filter contrast-125 brightness-75" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      {!isPlaying ? (
+                        <>
+                          <img src="https://i.postimg.cc/nLpsbvT5/1.webp" alt="Album Art" className="w-full h-full object-cover filter contrast-125 brightness-75" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+                        </>
+                      ) : (
+                        <iframe 
+                          width="100%" 
+                          height="100%" 
+                          src="https://www.youtube.com/embed/GToAIpJKUkA?autoplay=1" 
+                          title="YouTube video player" 
+                          frameBorder="0" 
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                          allowFullScreen
+                        ></iframe>
+                      )}
                     </div>
                   </div>
 
@@ -409,16 +423,6 @@ export const BrotherRoom = ({ onBack }: { onBack: () => void }) => {
                       </button>
                       <SkipForward size={28} className="text-white" fill="currentColor" />
                     </div>
-                  </div>
-
-                  {/* Hidden YouTube Iframe for audio */}
-                  <div className="hidden">
-                    {isPlaying && (
-                      <iframe 
-                        src="https://www.youtube.com/embed/GToAIpJKUkA?autoplay=1&controls=0&list=RDGToAIpJKUkA" 
-                        allow="autoplay"
-                      />
-                    )}
                   </div>
                 </motion.div>
               )}

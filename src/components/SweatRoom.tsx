@@ -296,30 +296,20 @@ export const SweatRoom = ({ onBack }: { onBack: () => void }) => {
             </div>
           </div>
 
-          {/* Right Side: YouTube Iframe (Hidden visually but playing audio) */}
-          <div className="w-48 h-16 bg-black rounded border border-zinc-800 overflow-hidden opacity-30 hover:opacity-100 transition-opacity hidden md:block">
+          {/* Right Side: YouTube Iframe (Visible when playing) */}
+          <div className={`w-32 h-20 md:w-48 md:h-24 bg-black rounded border border-zinc-800 overflow-hidden transition-opacity ${isPlaying ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
             {isPlaying && (
               <iframe 
                 width="100%" 
                 height="100%" 
-                src="https://www.youtube.com/embed/1_lap6dzSUc?autoplay=1&controls=0" 
+                src="https://www.youtube.com/embed/1_lap6dzSUc?autoplay=1" 
                 title="YouTube video player" 
                 frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
               ></iframe>
             )}
           </div>
-          
-          {/* Mobile hidden iframe for audio */}
-          <div className="hidden">
-            {isPlaying && (
-              <iframe 
-                src="https://www.youtube.com/embed/1_lap6dzSUc?autoplay=1&controls=0" 
-                allow="autoplay"
-              />
-            )}
-          </div>
-
         </div>
       </motion.div>
         </motion.div>
